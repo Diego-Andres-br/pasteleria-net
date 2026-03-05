@@ -69,10 +69,20 @@ body {
 
 /* Segunda Sección */
 .segunda {
-  background-color: #f6e4ea;
-  padding: 50px 0;
-  height: auto; /* Para que se ajuste al contenido */
-  min-height: 100vh;
+  background-color: #fce4ec; /* El rosado de fondo */
+  padding: 80px 0; /* 80px arriba y abajo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenido-postre h3 {
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .titulo-seccion {
@@ -83,32 +93,53 @@ body {
 
 /* Configuración base para todas las columnas */
 /* El CONTENEDOR es la clave para que estén en fila */
+/* CONTENEDOR: Se adapta al ancho de la pantalla */
 .contenedor-cortina {
-  display: flex;          /* <--- Esto las pone una al lado de la otra */
-  flex-direction: row;    /* <--- Asegura que sea horizontal */
-  width: 95%;
-  height: 700px;          /* Altura fija para que se vea el efecto */
-  gap: 15px;              /* Espacio entre columnas */
-  margin: 20px auto;
-  align-items: stretch;
+  display: flex;
+  width: 100%; /* Ocupa todo el ancho de la pantalla */
+  max-width: 1400px; /* Pero no se deforma en monitores gigantes */
+  height: 600px; /* Dale un poco más de altura si quieres */
+  gap: 15px;
+  margin: 0 auto;
+  padding: 0 20px; /* Deja un pequeño margen a los lados para que no toque el borde */
 }
 
-/* La COLUMNA individual */
+/* COLUMNA: El truco del flex-grow */
 .columna-postre {
-  flex: 1;                /* Todas ocupan el mismo ancho inicial */
-  position: relative;
-  border-radius: 25px;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.7s cubic-bezier(0.25, 0.4, 0.45, 1.4); /* Animación suave */
+  flex: 1; /* Todas iguales */
   background-size: cover;
   background-position: center;
+  border-radius: 20px;
+  transition: all 0.5s ease; /* Animación fluida */
+  position: relative;
+  overflow: hidden;
 }
 
-/* EFECTO CORTINA: Al pasar el mouse se expande */
-.columna-postre:hover {
-  flex: 5;                /* Se hace 5 veces más ancha */
+/* EFECTO PC: Se expande al pasar el mouse */
+@media (min-width: 769px) {
+  .columna-postre:hover {
+    flex: 4; /* Se estira hacia los lados */
+  }
 }
+
+/* EFECTO MÓVIL: Se apilan para que no se vean como fideos */
+@media (max-width: 768px) {
+  .contenedor-cortina {
+    flex-direction: column; /* Una encima de otra */
+    height: auto; /* La altura crece según el contenido */
+  }
+
+  .columna-postre {
+    width: 100%;
+    height: 150px; /* Altura fija para que se vea la foto */
+    flex: none;
+  }
+
+  .columna-postre:active, .columna-postre:hover {
+    height: 250px; /* Se estira hacia abajo al tocar */
+  }
+}
+
 
 /* TUS IMÁGENES (Cámbialas por tus nombres reales) */
 .columna-postre:nth-child(1) { background-image: url("/Images/torta.jpg"); }
