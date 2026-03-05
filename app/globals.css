@@ -1,26 +1,172 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* General */
+body { 
+    margin: 0; 
+    font-family: 'Arial', sans-serif; 
+    overflow-x: hidden;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Navegación */
+.nav { 
+    position: fixed; 
+    width: 100%; 
+    background: #f8c8dc; /* Corregido: antes tenías una mezcla de hex y rgb */
+    padding: 15px 0; 
+    top: 0; 
+    text-align: center; 
+    border-bottom: 4px solid white; 
+    z-index: 1000;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Secciones */
+.section { 
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column; 
+    font-size: 40px; 
+    text-align: center;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  
+  /* 1. La ruta simplificada (sin /public y con el nuevo nombre) */
+  background-image: url("/Images/portada.jpg"); 
+  
+  /* 2. Color de respaldo por si la imagen falla (opcional) */
+  background-color: #f8c8dc; 
+  
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+/* El filtro rojo ahora tiene z-index: 1 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(192, 21, 21, 0.4); 
+  z-index: 1;
+}
+
+/* El texto DEBE tener z-index: 2 para estar sobre el filtro */
+.hero h1, .hero p {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin: 0;
+}
+
+/* Segunda Sección */
+.segunda {
+  background-color: #f6e4ea;
+  padding: 50px 0;
+  height: auto; /* Para que se ajuste al contenido */
+  min-height: 100vh;
+}
+
+.titulo-seccion {
+  font-size: 2.5rem;
+  color: #d63384;
+  margin-bottom: 30px;
+}
+
+/* Configuración base para todas las columnas */
+/* El CONTENEDOR es la clave para que estén en fila */
+.contenedor-cortina {
+  display: flex;          /* <--- Esto las pone una al lado de la otra */
+  flex-direction: row;    /* <--- Asegura que sea horizontal */
+  width: 95%;
+  height: 700px;          /* Altura fija para que se vea el efecto */
+  gap: 15px;              /* Espacio entre columnas */
+  margin: 20px auto;
+  align-items: stretch;
+}
+
+/* La COLUMNA individual */
+.columna-postre {
+  flex: 1;                /* Todas ocupan el mismo ancho inicial */
+  position: relative;
+  border-radius: 25px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.7s cubic-bezier(0.25, 0.4, 0.45, 1.4); /* Animación suave */
+  background-size: cover;
+  background-position: center;
+}
+
+/* EFECTO CORTINA: Al pasar el mouse se expande */
+.columna-postre:hover {
+  flex: 5;                /* Se hace 5 veces más ancha */
+}
+
+/* TUS IMÁGENES (Cámbialas por tus nombres reales) */
+.columna-postre:nth-child(1) { background-image: url("/Images/torta.jpg"); }
+.columna-postre:nth-child(2) { background-image: url("/Images/postre-frio.jpg"); }
+.columna-postre:nth-child(3) { background-image: url("/Images/galletas.jpg"); }
+.columna-postre:nth-child(4) { background-image: url("/Images/cupcakes.jpg"); }
+
+
+
+/* Botones */
+.boton { 
+    margin: 10px; 
+    padding: 15px 30px; 
+    font-size: 18px; 
+    border: none; 
+    border-radius: 12px; 
+    cursor: pointer; 
+    background-color: white; 
+    color: black; 
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.boton:hover { 
+    background-color: #ff69b4; 
+    color: white; 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+}
+
+.boton:active { transform: scale(0.95); }
+
+/* Redes Sociales Flotantes */
+.float { 
+    position: fixed; 
+    right: 20px; 
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; 
+    color: white; 
+    text-decoration: none; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
+    transition: 0.3s; 
+    z-index: 100;
+}
+
+.whatsapp { bottom: 20px; background: #25D366; }
+.instagram { bottom: 85px; background: #E1306C; }
+.facebook { bottom: 150px; background: #1877F2; }
+
+.float:hover { transform: scale(1.1); }
+
+/* Mobile */
+@media (max-width: 768px) { 
+    .section { font-size: 28px; padding: 20px; } 
+    .nav { padding-top: 10px; }
 }
