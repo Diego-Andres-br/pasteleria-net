@@ -1,7 +1,9 @@
 'use client'
+import { useState } from "react";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 export default function Home() {
+  const [imagenActiva, setImagenActiva] = useState<string | null>(null);
   return (
     <main>
       <nav className="nav">
@@ -30,6 +32,25 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      <section className="seccion-galeria">
+  <h2 className="titulo-seccion">Nuestra Galería</h2>
+  <div className="galeria-grid">
+    {[1,2,3,4,5,6,7,8,9].map((n) => (
+      <div key={n} className="galeria-item" onClick={() => setImagenActiva(`/Images/galeria${n}.jpg`)}>
+        <img src={`/Images/galeria${n}.jpg`} alt={`Postre ${n}`} />
+        <div className="galeria-overlay"><span>🔍</span></div>
+      </div>
+    ))}
+  </div>
+
+  {imagenActiva && (
+    <div className="galeria-modal" onClick={() => setImagenActiva(null)}>
+      <img src={imagenActiva} alt="Foto ampliada" />
+      <button className="modal-cerrar" onClick={() => setImagenActiva(null)}>✕</button>
+    </div>
+  )}
+</section>
 
       <section className="seccion-contacto">
         <h2 className="titulo-seccion">¿Tienes un antojo?</h2>
