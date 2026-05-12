@@ -1,265 +1,342 @@
-/* General */
-html, body { 
+/* ==========================================
+   BASE
+   ========================================== */
+html {
+  scroll-behavior: smooth;
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
 }
 
-body { 
-    margin: 0; 
-    font-family: 'Arial', sans-serif; 
-    overflow-x: hidden;
-}
-/* Navegación */
-.nav { 
-    position: fixed; 
-    width: 100%; 
-    background: #f8c8dc; /* Corregido: antes tenías una mezcla de hex y rgb */
-    padding: 15px 0; 
-    top: 0; 
-    text-align: center; 
-    border-bottom: 4px solid white; 
-    z-index: 1000;
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  overflow-x: hidden;
+  width: 100%;
 }
 
-/* Secciones */
+/* ==========================================
+   NAVEGACIÓN
+   ========================================== */
+.nav {
+  position: fixed;
+  width: 100%;
+  background: rgba(248, 200, 220, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 12px 40px;
+  top: 0;
+  border-bottom: 3px solid white;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  box-shadow: 0 2px 20px rgba(214, 51, 132, 0.15);
+}
 
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.logo-img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.logo-texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-principal {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: #d63384;
+  font-weight: bold;
+}
+
+.logo-sub {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7rem;
+  color: #e91e8c;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #d63384;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ff69b4;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #ff69b4;
+}
+
+/* ==========================================
+   HERO
+   ========================================== */
 .hero {
   position: relative;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
-  
-  /* 1. La ruta simplificada (sin /public y con el nuevo nombre) */
-  background-image: url("/Images/portada.jpg"); 
-  
-  /* 2. Color de respaldo por si la imagen falla (opcional) */
-  background-color: #f8c8dc; 
-  
+  background-image: url("/Images/portada.jpg");
+  background-color: #f8c8dc;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
 }
 
-/* El filtro rojo ahora tiene z-index: 1 */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(192, 21, 21, 0.4); 
+  background: rgba(192, 21, 21, 0.4);
   z-index: 1;
 }
 
-/* El texto DEBE tener z-index: 2 para estar sobre el filtro */
-.hero h1, .hero p {
+.hero-ciudad {
   position: relative;
   z-index: 2;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  margin: 0 0 10px;
   text-align: center;
-  margin: 0;
+}
+
+.hero-titulo {
+  position: relative;
+  z-index: 2;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  margin: 0 0 12px;
+  text-align: center;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
 }
 
 .hero-subtitulo {
   position: relative;
   z-index: 2;
-  font-size: 20px;
-  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.9);
+  margin: 0 0 35px;
+  letter-spacing: 2px;
   text-align: center;
 }
 
-/* Segunda Sección */
-.segunda {
-  background-color: #fce4ec; /* El rosado de fondo */
-  padding: 80px 0; /* 80px arriba y abajo */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Reemplaza tu .contenido-postre h3 actual por esto: */
-.contenido-postre {
-  position: absolute;
-  bottom: 15px;
-  left: 0;
-  right: 0;
-  text-align: center;
-}
-
-.contenido-postre h3 {
-  background: rgba(255, 255, 255, 0.8);
-  color: #333;
-  padding: 10px 20px;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  display: inline-block; /* Para que el fondo no ocupe todo el ancho */
-  margin: 0;
-}
-
-.titulo-seccion {
-  font-size: 2.5rem;
-  color: #d63384;
-  margin-bottom: 30px;
-}
-
-/* Configuración base para todas las columnas */
-/* El CONTENEDOR es la clave para que estén en fila */
-/* CONTENEDOR: Se adapta al ancho de la pantalla */
-.contenedor-cortina {
-  display: flex;
-  width: 100%; /* Ocupa todo el ancho de la pantalla */
-  max-width: 1400px; /* Pero no se deforma en monitores gigantes */
-  height: 600px; /* Dale un poco más de altura si quieres */
-  gap: 15px;
-  margin: 0 auto;
-  padding: 0 20px; /* Deja un pequeño margen a los lados para que no toque el borde */
-}
-
-/* COLUMNA: El truco del flex-grow */
-.columna-postre {
-  flex: 1; /* Todas iguales */
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
-  transition: all 0.5s ease; /* Animación fluida */
+.hero-botones {
   position: relative;
-  overflow: hidden;
-}
-
-/* EFECTO PC: Se expande al pasar el mouse */
-@media (min-width: 769px) {
-  .columna-postre:hover {
-    flex: 4; /* Se estira hacia los lados */
-  }
-}
-
-/* EFECTO MÓVIL: Se apilan para que no se vean como fideos */
-@media (max-width: 768px) {
-  .contenedor-cortina {
-    flex-direction: column; /* Una encima de otra */
-    height: auto; /* La altura crece según el contenido */
-  }
-
-  .columna-postre {
-    width: 100%;
-    height: 150px; /* Altura fija para que se vea la foto */
-    flex: none;
-  }
-
-  .columna-postre:active, .columna-postre:hover {
-    height: 250px; /* Se estira hacia abajo al tocar */
-  }
-}
-
-
-/* TUS IMÁGENES (Cámbialas por tus nombres reales) */
-.columna-postre:nth-child(1) { background-image: url("/Images/torta.jpg"); }
-.columna-postre:nth-child(2) { background-image: url("/Images/postre-frio.jpg"); }
-.columna-postre:nth-child(3) { background-image: url("/Images/galletas.jpg"); }
-.columna-postre:nth-child(4) { background-image: url("/Images/cupcakes.jpg"); }
-
-
-.seccion-contacto {
-  background-color: #f8c8dc;
-  padding: 80px 20px;
+  z-index: 2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 20px;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.contacto-texto {
-  font-size: 1.2rem;
-  color: #555;
-  margin: 0;
-  max-width: 500px;
-}
-
-
-
-/* Botones */
-.boton { 
-    margin: 10px; 
-    padding: 15px 30px; 
-    font-size: 18px; 
-    border: none; 
-    border-radius: 12px; 
-    cursor: pointer; 
-    background-color: white; 
-    color: black; 
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.boton:hover { 
-    background-color: #ff69b4; 
-    color: white; 
-    transform: translateY(-5px); 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+/* ==========================================
+   BOTONES
+   ========================================== */
+.boton {
+  margin: 10px;
+  padding: 12px 30px;
+  font-size: 0.95rem;
+  border: 2px solid white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
 }
 
 .boton:active { transform: scale(0.95); }
 
-/* Redes Sociales Flotantes */
-.float { 
-    position: fixed; 
-    right: 20px; 
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%; 
-    color: white; 
-    text-decoration: none; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
-    transition: 0.3s; 
-    z-index: 100;
+.boton-principal {
+  background: white;
+  color: #d63384;
+  border-color: white;
 }
 
-.whatsapp { bottom: 20px; background: #25D366; }
-.instagram { bottom: 85px; background: #E1306C; }
-.facebook { bottom: 150px; background: #1877F2; }
-
-@media (max-width: 768px) {
-  /* Ya tenías esto: */
-  .section { font-size: 28px; padding: 20px; }
-  .nav { padding-top: 10px; }
-
-  /* NUEVO — parallax roto en iOS: */
-  .hero {
-    background-attachment: scroll;
-  }
-
-  /* NUEVO — botones flotantes más pequeños en móvil: */
-  .float {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-    right: 12px;
-  }
-
-  .whatsapp { bottom: 15px; }
-  .instagram { bottom: 65px; }
-  .facebook { bottom: 115px; }
+.boton-principal:hover {
+  background: transparent;
+  color: white;
 }
 
- /* 👇 Agrega esto nuevo: */
-    .hero {
-      width: 100vw;
-      background-size: cover;
-    }
+.boton-secundario {
+  background: transparent;
+  color: white;
+  border-color: white;
+}
 
-    /* Galería */
-.seccion-galeria {
+.boton-secundario:hover {
+  background: white;
+  color: #d63384;
+}
+
+/* Botón genérico (sección contacto) */
+.boton-contacto {
+  background: #d63384;
+  color: white;
+  border-color: #d63384;
+  border-radius: 30px;
+}
+
+.boton-contacto:hover {
+  background: white;
+  color: #d63384;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ==========================================
+   SECCIÓN PRODUCTOS
+   ========================================== */
+.segunda {
   background-color: #fff0f5;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-seccion {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #d63384;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.contenedor-cortina {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.columna-postre {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 420px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.columna-postre:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(214,51,132,0.25);
+}
+
+.columna-postre::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  border-radius: 0 0 20px 20px;
+}
+
+.contenido-postre {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2;
+}
+
+.contenido-postre h3 {
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  margin: 0 0 6px;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  display: inline-block;
+}
+
+.producto-desc {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.8rem;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  background: rgba(214,51,132,0.6);
+  padding: 4px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+/* Imágenes productos */
+.columna-postre:nth-child(1) { background-image: url("/Images/torta.jpg"); }
+.columna-postre:nth-child(2) { background-image: url("/Images/postre-frio.jpg"); }
+.columna-postre:nth-child(3) { background-image: url("/Images/galletas.jpg"); }
+
+/* ==========================================
+   GALERÍA
+   ========================================== */
+.seccion-galeria {
+  background-color: #fce4ec;
   padding: 80px 20px;
   display: flex;
   flex-direction: column;
@@ -309,7 +386,6 @@ body {
   opacity: 1;
 }
 
-/* Modal zoom */
 .galeria-modal {
   position: fixed;
   inset: 0;
@@ -343,9 +419,134 @@ body {
   font-weight: bold;
 }
 
-/* Galería móvil */
+/* ==========================================
+   CONTACTO
+   ========================================== */
+.seccion-contacto {
+  background-color: #f8c8dc;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.contacto-texto {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0;
+  max-width: 500px;
+  font-family: 'Lato', sans-serif;
+}
+
+/* ==========================================
+   REDES SOCIALES FLOTANTES
+   ========================================== */
+.float {
+  position: fixed;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: 0.3s;
+  z-index: 100;
+}
+
+.float:hover { transform: scale(1.1); }
+
+.whatsapp { bottom: 20px; background: #25D366; }
+.instagram { bottom: 85px; background: #E1306C; }
+.facebook { bottom: 150px; background: #1877F2; }
+
+/* ==========================================
+   RESPONSIVE MÓVIL
+   ========================================== */
 @media (max-width: 768px) {
+
+  /* Nav */
+  .nav {
+    flex-direction: row;
+    padding: 8px 15px;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .nav-logo {
+    flex: 1;
+  }
+
+  .logo-img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .logo-principal {
+    font-size: 0.95rem;
+  }
+
+  .logo-sub {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Hero */
+  .hero {
+    background-attachment: scroll;
+  }
+
+  .hero-titulo {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitulo {
+    font-size: 0.95rem;
+  }
+
+  .hero-botones {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Productos */
+  .contenedor-cortina {
+    grid-template-columns: 1fr;
+  }
+
+  .columna-postre {
+    height: 250px;
+    width: 100%;
+  }
+
+  /* Galería */
   .galeria-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Flotantes */
+  .float {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    right: 12px;
+  }
+
+  .whatsapp { bottom: 15px; }
+  .instagram { bottom: 65px; }
+  .facebook { bottom: 115px; }
 }

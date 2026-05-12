@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Repostería Claudia Patricia",
     description: "Dulzura en cada detalle. Pedidos por WhatsApp.",
-    url: "https://tu-dominio.vercel.app", // 👈 cámbialo por tu URL real
+    url: "https://pasteleria-net.vercel.app",
     siteName: "Repostería Claudia Patricia",
     locale: "es_CO",
     type: "website",
@@ -22,6 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+      </head>
       <body>{children}</body>
     </html>
   );
