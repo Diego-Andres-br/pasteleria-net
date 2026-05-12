@@ -1,10 +1,15 @@
 /* General */
+html, body { 
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
 body { 
     margin: 0; 
     font-family: 'Arial', sans-serif; 
     overflow-x: hidden;
 }
-
 /* Navegación */
 .nav { 
     position: fixed; 
@@ -245,3 +250,9 @@ body {
   .instagram { bottom: 65px; }
   .facebook { bottom: 115px; }
 }
+
+ /* 👇 Agrega esto nuevo: */
+    .hero {
+      width: 100vw;
+      background-size: cover;
+    }
