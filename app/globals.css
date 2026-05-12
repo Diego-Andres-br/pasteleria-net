@@ -18,15 +18,7 @@ body {
 }
 
 /* Secciones */
-.section { 
-    height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    flex-direction: column; 
-    font-size: 40px; 
-    text-align: center;
-}
+
 
 .hero {
   position: relative;
@@ -67,6 +59,14 @@ body {
   margin: 0;
 }
 
+.hero-subtitulo {
+  position: relative;
+  z-index: 2;
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+}
+
 /* Segunda Sección */
 .segunda {
   background-color: #fce4ec; /* El rosado de fondo */
@@ -76,13 +76,24 @@ body {
   align-items: center;
 }
 
+/* Reemplaza tu .contenido-postre h3 actual por esto: */
+.contenido-postre {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
 .contenido-postre h3 {
-  background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+  background: rgba(255, 255, 255, 0.8);
   color: #333;
   padding: 10px 20px;
   border-radius: 50px;
   font-size: 1.2rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: inline-block; /* Para que el fondo no ocupe todo el ancho */
+  margin: 0;
 }
 
 .titulo-seccion {
@@ -148,6 +159,24 @@ body {
 .columna-postre:nth-child(4) { background-image: url("/Images/cupcakes.jpg"); }
 
 
+.seccion-contacto {
+  background-color: #f8c8dc;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.contacto-texto {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0;
+  max-width: 500px;
+}
+
+
 
 /* Botones */
 .boton { 
@@ -194,10 +223,25 @@ body {
 .instagram { bottom: 85px; background: #E1306C; }
 .facebook { bottom: 150px; background: #1877F2; }
 
-.float:hover { transform: scale(1.1); }
+@media (max-width: 768px) {
+  /* Ya tenías esto: */
+  .section { font-size: 28px; padding: 20px; }
+  .nav { padding-top: 10px; }
 
-/* Mobile */
-@media (max-width: 768px) { 
-    .section { font-size: 28px; padding: 20px; } 
-    .nav { padding-top: 10px; }
+  /* NUEVO — parallax roto en iOS: */
+  .hero {
+    background-attachment: scroll;
+  }
+
+  /* NUEVO — botones flotantes más pequeños en móvil: */
+  .float {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    right: 12px;
+  }
+
+  .whatsapp { bottom: 15px; }
+  .instagram { bottom: 65px; }
+  .facebook { bottom: 115px; }
 }
